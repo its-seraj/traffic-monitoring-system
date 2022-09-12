@@ -1,0 +1,128 @@
+<div class="col-sm-12">
+	<div class="card">  
+    <div class="card-header">
+      <h3 class="card-title"><?= $title; ?></h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+       <?php 
+        //id or password incorrect
+        if($this->session->flashdata('statusType'))
+        {
+            echo '<div class="alert alert-'.$this->session->statusType.' alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <p>'.$this->session->statusMsg.'</p>
+                  </div>
+            ';
+        }
+      ?>
+      <form action="<?= base_url('report/getReport')?>" method="post" enctype="multipart/form-data">
+       	<div class="row">
+       		<div class="col-sm-2">
+	       		<div  class="form-group">
+	       			<label> Thana Incharge: </label>
+	       			<select name="thana" class="form-control">
+             <?php
+               if(!empty($rsThana))
+               {
+                echo "<option>Select Any One</option>";
+                foreach ($rsThana as $value) {
+                  echo "<option value='".$value['USER_ID']."'>".$value['user_name']."</option>";
+                }
+               }
+              ?>   
+              </select>
+	       		</div>
+       		</div>
+       		<div class="col-sm-2">
+            <div  class="form-group">
+              <label> Station: </label>
+              <select name="area" class="form-control">
+             <?php
+               if(!empty($rsStation))
+               {
+                echo "<option>Select Any One</option>";
+                foreach ($rsStation as $value) {
+                  echo "<option value='".$value['sid']."'>".$value['sname']."</option>";
+                }
+               }
+              ?>   
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-2">
+	       		<div  class="form-group">
+	       			<label> Area: </label>
+	       			<select name="area" class="form-control">
+             <?php
+               if(!empty($rsArea))
+               {
+                echo "<option>Select Any One</option>";
+                foreach ($rsArea as $value) {
+                  echo "<option value='".$value['AREAID']."'>".$value['arecode']."(".$value['arename'].")</option>";
+                }
+               }
+              ?>     
+              </select>
+	       		</div>
+       		</div>
+       		<div class="col-sm-3">
+	       		<div  class="form-group">
+	       			<label> Staff: </label>
+	       			<select name="thana" class="form-control">
+             <?php
+               if(!empty($rsStaff))
+               {
+                echo "<option>Select Any One</option>";
+                foreach ($rsStaff as $value) {
+                 echo "<option value='".$value['USER_ID']."'>".$value['user_name']."</option>";
+                }
+               }
+              ?>      
+              </select>
+	       		</div>
+       		</div>
+       		<div class="col-sm-3">
+	       		<div  class="form-group">
+	       			<label> Reson: </label>
+	       			<select name="thana" class="form-control">
+                <?php
+               if(!empty($rsChallan))
+               {
+                echo "<option>Select Any One</option>";
+                foreach ($rsChallan as $value) {
+                  echo "<option value='".$value['CT_ID']."'>".$value['ct_no']."(".$value['ct_detail'].")</option>";
+                }
+               }
+              ?>
+              </select>
+	       		</div>
+       		</div>
+       		<div class="col-sm-2">
+	       		<div  class="form-group">
+	       			<label style="color: white;"> Thana: </label><br/>
+	       			<button name="submit" type="button" class="btn btn-primary btn-block">Submit</button>
+	       		</div>
+       		</div>
+       	</div>
+      </form>
+   </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</div>
+<!--/.col-sm-12-->
+<style>
+  .error p{
+    background-color: #5F5F5F;
+    padding: 5px;
+    color:white;
+  }
+</style>
+<script type="text/javascript">
+        $(function(){
+          $('.sidebar-toggle').trigger('click');
+          $('.active').removeClass("active");
+          $('#pg-report').addClass("active");
+        });
+    </script>
+
